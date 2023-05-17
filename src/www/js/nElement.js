@@ -145,7 +145,7 @@ export class nHR extends nElement {
       // element: { tagName: 'hr' },
       component: { name: 'hr' },
     })
-    
+
     this.setStyle('padding', 'calc(1rem / 2)')
     this.setStyle('background-color', 'calc(1rem / 2)')
     this.setStyle('width', 'calc(1rem / 1)')
@@ -181,6 +181,31 @@ export class nText extends nElement {
       component: { name: 'text' },
     })
   }
+}
+
+export class nImage extends nElement {
+  constructor() {
+    super({
+      element: { tagName: 'img' },
+      component: { name: 'image' },
+    })
+
+    this.setStyle('width', '100%')
+    this.alt()
+  }
+
+  src(value) {
+    this.element.src = value
+    //
+    return this
+  }
+
+  alt(value = 'image') {
+    this.element.alt = value
+    //
+    return this
+  }
+
 }
 
 export class nPre extends nElement {
