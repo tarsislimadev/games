@@ -1,0 +1,5 @@
+# Game
+
+## License
+
+[MIT](./LICENSE)
