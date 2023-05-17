@@ -19,7 +19,11 @@ class Response {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Headers': '*',
     },
-    body: {},
+    body: {
+      status: 'ok',
+      message: null,
+      data: {},
+    },
   }
 
   log = new Logger('Response')
@@ -36,13 +40,28 @@ class Response {
     return this
   }
 
-  setJSON(body = {}) {
-    this.log.info('setbody', { body })
+  setJSON(data = {}) {
+    this.log.info('setJSON', { data })
     //
     this.setStatus(200)
-    this.addHeader('Content-Type', 'application/json')
+    this.response.body = {
+      status: 'ok',
+      message: null,
+      data,
+    }
     //
-    this.response.body = body
+    return this
+  }
+
+  setError(e = new Error) {
+    this.log.info('setError', { e })
+    //
+    this.setStatus(e instanceof ApplicationError ? e.status : 400)
+    this.response.body = {
+      status: 'error',
+      message: e.message,
+      data: null,
+    }
     //
     return this
   }
