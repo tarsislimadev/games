@@ -1,5 +1,9 @@
 import Logger from './logger.js'
 
+const HEADERS = {
+  'Content-Type': 'application/json',
+}
+
 class Response {
   log = new Logger('Response')
 
@@ -45,25 +49,41 @@ class ErrorResponse extends ApplicationResponse {
 
 const Ajax = {
   log: new Logger('Ajax'),
-  post: (paths = [], data = {}) => new Promise((res, rej) => {
-    Ajax.log.info('post', { paths, data })
+  send: ({
+    method = 'GET',
+    paths = [],
+    headers = [],
+    body = {},
+  }) => {
+    return new Promise((res, rej) => {
+      Ajax.log.info('post', { method, paths, headers, body, })
 
-    const xhr = new XMLHttpRequest()
+      const xhr = new XMLHttpRequest()
 
-    const onComplete = (xhr) => {
-      const response = JSON.parse(xhr.responseText)
+      const onComplete = (xhr) => {
+        const response = JSON.parse(xhr.responseText)
 
-      xhr.status === 200
-        ? res(new SuccessResponse(response))
-        : rej(new ErrorResponse(response))
-    }
+        xhr.status === 200
+          ? res(new SuccessResponse(response))
+          : rej(new ErrorResponse(response))
+      }
 
-    xhr.open('POST', paths.join('/'), true)
-    xhr.setRequestHeader('Content-Type', 'application/json')
-    xhr.onload = () => onComplete(xhr)
-    xhr.onerror = () => onComplete(xhr)
-    xhr.send(JSON.stringify(data))
-  })
+      xhr.open(method, paths.join('/'), true)
+      //
+      Object.keys(HEADERS)
+        .map((key) => xhr.setRequestHeader(key, HEADERS[key]))
+      //
+      Object.keys(headers)
+        .map((key) => xhr.setRequestHeader(key, headers[key]))
+      //
+      xhr.onload = () => onComplete(xhr)
+      xhr.onerror = () => onComplete(xhr)
+      //
+      xhr.send(JSON.stringify(body))
+    })
+  },
+  get: (paths = [], body = {}) => Ajax.send({ method: 'GET', paths, body, }),
+  post: (paths = [], body = {}) => Ajax.send({ method: 'POST', paths, body, }),
 }
 
 export default Ajax
