@@ -78,6 +78,7 @@ class GameApp {
     button.setStyle('background-color', '#000000')
     button.setStyle('color', '#FFFFFF')
     //
+    button.on('click', () => window.location = this.link)
     button.on('mouseenter', () => {
       button.setStyle('background-color', '#FFFFFF')
       button.setStyle('color', '#000000')
