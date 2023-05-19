@@ -1,6 +1,5 @@
 import API from './js/api.js'
-import { nButton } from './js/nElement.js'
-import { nElement, nFlex, nH1, nH2, nImage } from './js/nElement.js'
+import { nElement, nFlex, nH1, nH2, nImage, nButton } from './js/nElement.js'
 
 nElement.fromElement(document.body)
   .setStyle('margin', '0')
