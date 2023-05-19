@@ -6,8 +6,14 @@
       {
         "image": "./img/speed-match.png",
         "name": "Speed Match",
-        "price": 0,
+        "price": 0.0,
         "link": "./games/speed-match/"
+      },
+      {
+        "image": "./img/chalkboard.png",
+        "name": "Chalkboard",
+        "price": 1.0,
+        "link": "./games/chalkboard/"
       }
     ]
   }
