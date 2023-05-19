@@ -40,14 +40,9 @@ export class nElement {
 
     this.setStyle('margin', '0')
     this.setStyle('padding', '0')
-    this.setStyle('width', '100%')
     this.setStyle('border', 'none')
     this.setStyle('outline', 'none')
-    this.setStyle('display', 'inline-block')
     this.setStyle('box-sizing', 'border-box')
-    //
-    this.setContainerStyle('width', '100%')
-    this.setContainerStyle('display', 'inline-block')
   }
 
   static fromElement(el = document.createElement('')) {
