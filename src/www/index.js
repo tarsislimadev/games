@@ -22,7 +22,7 @@ app.append(body)
 
 const list = new nElement()
 list.setStyle('margin', '1rem auto')
-list.setStyle('width', '40rem')
+// list.setStyle('width', '40rem')
 body.append(list)
 
 class GameApp {
@@ -46,7 +46,7 @@ class GameApp {
     dom.setStyle('padding', '1rem')
 
     const left = new nElement()
-    left.setStyle('width', '10rem')
+    left.setContainerStyle('width', '40%')
     dom.append(left)
 
     const image = new nImage()
@@ -54,8 +54,7 @@ class GameApp {
     left.append(image)
 
     const right = new nElement()
-    right.setStyle('width', '28rem')
-    right.setStyle('text-align', 'left')
+    right.setContainerStyle('width', '60%')
     dom.append(right)
 
     const name = new nH2()
